@@ -2,7 +2,14 @@ import random
 import os
 
 def GetText():
-    DIR = './src'
+    print("Select the text language:")
+    print("1: English")
+    print("2: Русский")
+    lang = input()
+    if lang == "1":
+        DIR = './src/eng'
+    if lang == "2":
+        DIR = './src/rus'
     source = open(os.path.join(DIR, random.choice(os.listdir(DIR))))
     text = source.readlines()
     print("Select the size of the text:")
