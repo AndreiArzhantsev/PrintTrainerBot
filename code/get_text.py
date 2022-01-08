@@ -5,7 +5,6 @@ def GetText():
     DIR = './src'
     source = open(os.path.join(DIR, random.choice(os.listdir(DIR))))
     text = source.readlines()
-    print(text)
     print("Select the size of the text:")
     print("1: 20-50 words")
     print("2: 50-100 words")
