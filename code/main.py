@@ -10,7 +10,7 @@ def PrintWithSleep(string, sleep_time):
 orig_text = GetText();
 
 PrintWithSleep("Are you ready?", 1)
-PrintWithSleep(orig_text, 0.5)
+PrintWithSleep(orig_text, 2)
 PrintWithSleep("3", 0.5)
 PrintWithSleep("2", 0.5)
 PrintWithSleep("1", 0.5)
@@ -18,10 +18,8 @@ print("Start")
 start_time = time.time()
 
 your_text = ''
-c = ''
-while(c != '\n'):
+while((c := sys.stdin.read(1)) != '' and c != '\n'):
     your_text += c
-    c = sys.stdin.read(1)
 
 end_time = time.time()
 

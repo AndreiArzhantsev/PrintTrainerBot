@@ -1,7 +1,7 @@
 import random
 
 def GetText():
-    source = open('potter.txt', 'r')
+    source = open('../src/potter.txt', 'r')
     text = source.readlines()
     print("Select the size of the text:")
     print("1: 20-50 words")
