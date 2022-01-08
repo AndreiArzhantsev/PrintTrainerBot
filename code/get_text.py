@@ -20,6 +20,5 @@ def GetText():
     while True:
         pattern = text[random.randrange(len(text))]
         if min_size <= len(pattern.split(' ')) <= max_size:
-            print(pattern)
             return pattern
         
