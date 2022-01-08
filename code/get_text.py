@@ -1,32 +1,26 @@
 import random
 import os
 
-def GetText():
-    print("Select the text language:")
-    print("1: English")
-    print("2: Русский")
-    lang = input()
-    if lang == "1":
-        DIR = './src/eng'
-    if lang == "2":
-        DIR = './src/rus'
-    source = open(os.path.join(DIR, random.choice(os.listdir(DIR))))
-    text = source.readlines()
-    print("Select the size of the text:")
-    print("1: 20-50 words")
-    print("2: 50-100 words")
-    print("3: 100-200 words")
-    ans = input()
-    if ans == "1":
+def GetText(lang, difficulty):
+    if difficulty == "1":
         min_size = 20
         max_size = 50
-    if ans == "2":
+    elif difficulty == "2":
         min_size = 50
         max_size = 100
-    if ans == "3":
+    elif difficulty == "3":
         min_size = 100
         max_size = 200
+
+    if lang == "1":
+        DIR = '../src/eng'
+    elif lang == "2":
+        DIR = '../src/rus'
+    source = open(os.path.join(DIR, random.choice(os.listdir(DIR))))
+    text = source.readlines()
     while True:
         pattern = text[random.randrange(len(text))]
+        # pattern.split() in line below seems to be replaced with smth better
         if min_size <= len(pattern.split(' ')) <= max_size:
             return pattern
+

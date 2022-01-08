@@ -1,4 +1,3 @@
-
 def Accuracy(pattern, result):
     len1 = len(pattern)
     len2 = len(result)
