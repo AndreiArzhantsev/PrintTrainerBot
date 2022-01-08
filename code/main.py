@@ -23,10 +23,7 @@ while((c := sys.stdin.read(1)) != '' and c != '\n'):
 
 end_time = time.time()
 
-if (orig_text == your_text):
-    print("Excellent!")
-
-print("You made", Accuracy(orig_text, your_text), "typos")
-print("Your accuracy is: ", 100 * Accuracy(orig_text, your_text) / len(orig_text), "%", sep='')
+print("You made", Accuracy(orig_text, your_text) - 1, "typos")
+print("Your accuracy is: ", 100 - 100 * (Accuracy(orig_text, your_text) - 1) / len(orig_text), "%", sep='')
 print("Time spent:", end_time - start_time)
 

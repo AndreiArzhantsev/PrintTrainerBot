@@ -2,7 +2,3 @@
 /shelf/
 /workspace.xml
 
-# useless __pycache__
-../code/__pycache__/
-/code/__pycache__/
-

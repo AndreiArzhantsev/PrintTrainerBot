@@ -11,12 +11,14 @@ def GetText():
     if ans == "1":
         min_size = 20
         max_size = 50
-    if ans == "2":
+    elif ans == "2":
         min_size = 50
         max_size = 100
-    if ans == "3":
+    elif ans == "3":
         min_size = 100
         max_size = 200
+    else:
+        raise 'Do not fool me'
     while True:
         pattern = text[random.randrange(len(text))]
         if min_size <= len(pattern.split(' ')) <= max_size:
