@@ -5,9 +5,9 @@ import re
 
 def GetSource(lang):
     if lang == "1":
-        DIR = './src/eng'
+        DIR = '../src/eng'
     elif lang == "2":
-        DIR = './src/rus'
+        DIR = '../src/rus'
     return os.path.join(DIR, random.choice(os.listdir(DIR)))
 
 
@@ -33,5 +33,5 @@ def GetText(source, difficulty):
 
 
 def NameOfTheBook(source):
-    source = source.replace('/', '.')
-    return source.split('.')[4]
+    return source.split('/')[3][:-4]
+
