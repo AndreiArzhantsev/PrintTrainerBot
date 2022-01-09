@@ -1,7 +1,10 @@
 import sys
 import time
 from get_text import GetText
-from accuracy import Accuracy
+from get_text import GetSource
+from get_text import NameOfTheBook
+from result import Accuracy
+from result import results
 
 def PrintWithSleep(string, sleep_time):
     print(string)
@@ -23,7 +26,9 @@ while (difficulty := input()) not in {"1", "2", "3"}:
     print("Please select 1 or 2 or 3")
 
 # competition starts there!
-orig_text = GetText(lang, difficulty)
+source = GetSource(lang)
+orig_text = GetText(source, difficulty)
+book = NameOfTheBook(source)
 
 PrintWithSleep("Are you ready?", 1)
 PrintWithSleep(orig_text, 1.5)
@@ -39,11 +44,11 @@ while (c := sys.stdin.read(1)) != '\n':
 
 end_time = time.time()
 
-accuracy_result = Accuracy(orig_text.strip(), your_text.strip())
-print("You made", accuracy_result, "typos")
-print("Your accuracy is: ", 100 - 100 * accuracy_result / len(orig_text), "%", sep='')
-print("Time spent:", end_time - start_time)
+results(orig_text, your_text, end_time - start_time, book)
+#accuracy_result = Accuracy(orig_text.strip(), your_text.strip())
+#print("You made", accuracy_result, "typos")
+#print("Your accuracy is: ", 100 - 100 * accuracy_result / len(orig_text), "%", sep='')
+#print("Time spent:", end_time - start_time)
 
 # where main ends
 ###########################################################################
-
