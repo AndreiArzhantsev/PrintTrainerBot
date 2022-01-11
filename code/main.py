@@ -16,7 +16,7 @@ class States:
     end_time = 0
 
 
-# token = 
+# token =
 bot = telebot.TeleBot(token)
 
 
@@ -71,9 +71,7 @@ def SetRemaining(message):
         bot.set_state(message.from_user.id, States.your_text)
         with bot.retrieve_data(message.from_user.id) as data:
             data['size'] = message.text
-            source = GetSource(data['lang'])
-            data['orig_text'] = GetText(source, data['size'])
-            data['book'] = NameOfTheBook(source)
+            data['orig_text'], data['book'] = GetText(GetSource(data['lang']), data['size'])
 
             bot.send_message(message.from_user.id, str(chr(0x026A1)) + "Are you ready?")
             time.sleep(1)

@@ -1,37 +1,22 @@
 import random
 import os
-import re
 
 
 def GetSource(lang):
     if lang == "1":
-        DIR = '../src/eng'
+        return '../src/eng/'
     elif lang == "2":
-        DIR = '../src/rus'
-    return os.path.join(DIR, random.choice(os.listdir(DIR)))
+        return '../src/rus/'
 
 
-def GetText(source, difficulty):
-    source = open(source)
-
-    if difficulty == "1":
-        min_size = 20
-        max_size = 50
-    elif difficulty == "2":
-        min_size = 50
-        max_size = 100
-    elif difficulty == "3":
-        min_size = 100
-        max_size = 200
-
-    text = source.readlines()
-    while True:
-        pattern = text[random.randrange(len(text))]
-        # pattern.split() in line below seems to be replaced with smth better
-        if min_size <= len(pattern.split(' ')) <= max_size:
-            return pattern
-
-
-def NameOfTheBook(source):
-    return source.split('/')[3][:-4]
+def GetText(source, size):
+    if size == "1":
+        source += 'short/'
+    elif size == "2":
+        source += 'medium/'
+    elif size == "3":
+        source += 'long/'
+    path = os.path.join(source, random.choice(os.listdir(source)))
+    text = open(path, 'r').readlines()
+    return text[random.randrange(len(text))], path.split('/')[4][:-4]
 
