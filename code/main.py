@@ -31,7 +31,7 @@ def WelcomeMsg(message):
 @bot.message_handler(commands=['help'])
 def HelpMsg(message):
     bot.send_message(message.from_user.id, '''Hello again friend.
-Let me introduce myself. I am quite simple bot. All I can do is help you to practice so called 'touch typing' - I send you a text, and you typing it back as fast as you can. Then I send you your result. Practice more and more and soon you'll observe you'r progress. Good luck. Oh, and there are my commands:
+Let me introduce myself. I am quite simple bot. All I can do is help you to practice so called 'touch typing' - I send you a text, and you typing it back as fast as you can. Then I send you your result. Practice more and more and soon you'll observe your progress. Good luck. Oh, and there are my commands:
 /start launches me and outputs enterred message.
 /help provides description of what I can do.
 /train starts your training - try it for sure!
