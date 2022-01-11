@@ -1,12 +1,9 @@
 import sys
 import time
 import telebot
-import emoji
-from emoji import emojize
 from telebot import custom_filters
 from get_text import *
-from result import Accuracy
-
+from results import Accuracy
 
 
 class States:
@@ -23,22 +20,22 @@ token = "5089220566:AAGM006zFa-b2f2RniRRmNrbudcZY8_TwmA"
 bot = telebot.TeleBot(token)
 
 
-@bot.message_handler(commands=['start'])
+@bot.message_handler(commands='start')
 def WelcomeMsg(message):
     bot.send_message(message.from_user.id, "Hello there, I'm PrintTrainerBot. Type /train to start training. Also try /help for more info")
 
 
-@bot.message_handler(commands=['help'])
+@bot.message_handler(commands='help')
 def HelpMsg(message):
     bot.send_message(message.from_user.id, '''Hello again friend.
-Let me introduce myself. I am quite simple bot. All I can do is help you to practice so called 'touch typing' - I send you a text, and you typing it back as fast as you can. Then I send you your result. Practice more and more and soon you'll observe your progress. Good luck. Oh, and there are my commands:
+Let me introduce myself. I am quite simple bot. All I can do is help you to practice so called 'touch typing' - I send you a text, and you type it back as fast as you can. Then I send you your result. Practice more and more and soon you'll observe your progress. Good luck. Oh, and there are my commands:
 /start launches me and outputs enterred message.
 /help provides description of what I can do.
 /train starts your training - try it for sure!
 /cancel cancels the current operation.
 ''')
 
-@bot.message_handler(commands=['train'])
+@bot.message_handler(commands='train')
 def StartTraining(message):
     bot.set_state(message.from_user.id, States.lang)
     bot.send_message(message.from_user.id, str(chr(0x1F524)) + "Select the text language:\n"+
@@ -46,13 +43,13 @@ def StartTraining(message):
         "2:Русский")
 
 
-@bot.message_handler(state="*", commands=['cancel'])
+@bot.message_handler(state="*", commands='cancel')
 def Cancel(message):
     bot.send_message(message.from_user.id, "Canceled")
     bot.delete_state(message.from_user.id)
 
 
-@bot.message_handler(commands=['cancel'])
+@bot.message_handler(commands='cancel')
 def Cancel(message):
     bot.send_message(message.from_user.id, "Canceled")
 
@@ -105,12 +102,12 @@ def GetUserText(message):
             str(chr(0x1F5D1)) + "You made " + str(accuracy_result) + " typos" + "\n" +
             str(chr(0x1F3AF)) + "Your accuracy: " + str(100 - round(100 * accuracy_result / len(data['orig_text']), 2)) + "%" + "\n" + 
             str(chr(0x0231B)) + "Time spent: " + str(round(duration, 2)) + " sec" + "\n" +
-            str(chr(0x1F6B4)) + "Your speed: " + str(round(len(data['orig_text']) / duration, 2)) + " symbols/sec" + "\n" +
+            str(chr(0x1F6B4)) + "Your speed: " + str(round(60 * len(data['orig_text']) / duration, 2)) + " symbols/min" + "\n" +
             str(chr(0x1F4D7)) + "This text was from: " + data['book'])
     bot.delete_state(message.from_user.id)
 
 
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(content_types='text')
 def ReportUnknownMsg(message):
     if (message.text.lower() == "i love you"):
         bot.send_message(message.from_user.id, "I love you too <3")
@@ -120,3 +117,4 @@ def ReportUnknownMsg(message):
 
 bot.add_custom_filter(custom_filters.StateFilter(bot))
 bot.infinity_polling(skip_pending=True)
+
