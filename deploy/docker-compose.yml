@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  telegram-bot:
+    image: reyarzhan/PrintTrainerBot:main
+    labels:
+        # ???
+      - "com.centurylinklabs.watchtower.scope=botscope"
+    environment:
+      TELEGRAM_BOT_TOKEN: ${BOT_TOKEN}
+
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 10 --scope botscope
+    labels:
+      - "com.centurylinklabs.watchtower.scope=botscope"
+
