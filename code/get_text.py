@@ -4,9 +4,9 @@ import os
 
 def GetSource(lang):
     if lang == "1":
-        return '../src/eng/'
+        return 'src/eng/'
     elif lang == "2":
-        return '../src/rus/'
+        return 'src/rus/'
 
 
 def GetText(source, size):
@@ -18,5 +18,5 @@ def GetText(source, size):
         source += 'long/'
     path = os.path.join(source, random.choice(os.listdir(source)))
     text = open(path, 'r').readlines()
-    return text[random.randrange(len(text))], path.split('/')[4][:-4]
+    return text[random.randrange(len(text))], path.split('/')[3][:-4]
 

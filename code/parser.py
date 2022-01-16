@@ -2,10 +2,10 @@ import os
 
 
 for lang in ['eng', 'rus']:
-    path = '../src/' + lang + '/raw/'
-    short = '../src/' + lang + '/short/'
-    medium = '../src/' + lang + '/medium/'
-    long = '../src/' + lang + '/long/'
+    path = 'src/' + lang + '/raw/'
+    short = 'src/' + lang + '/short/'
+    medium = 'src/' + lang + '/medium/'
+    long = 'src/' + lang + '/long/'
 
     file_list = os.listdir(path)
     for f in file_list:

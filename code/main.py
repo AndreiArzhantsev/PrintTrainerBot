@@ -11,12 +11,12 @@ class States:
     size = 2
     your_text = 3
     orig_text = ''
-    book = ''
+    book = ''  
     start_time = 0
     end_time = 0
 
 
-# token =
+token = '5089220566:AAEEtsfkltvqACPruJxdCV_cbrCyxMLUamA'
 bot = telebot.TeleBot(token)
 
 
@@ -95,15 +95,17 @@ def GetUserText(message):
         data['end_time'] = time.time()
         data['your_text'] = message.text
         duration = data['end_time'] - data['start_time']
-        accuracy_result = Accuracy(data['orig_text'].strip(), data['your_text'].strip())
+        accuracy_result = Accuracy(data['orig_text'].strip(), data['your_text'].strip())[0]
+        final_typos = Accuracy(data['orig_text'].strip(), data['your_text'].strip())[1]
         bot.send_message(message.from_user.id,
             str(chr(0x1F5D1)) + "You made " + str(accuracy_result) + " typos" + "\n" +
             str(chr(0x1F3AF)) + "Your accuracy: " + str(100 - round(100 * accuracy_result / len(data['orig_text']), 2)) + "%" + "\n" + 
             str(chr(0x0231B)) + "Time spent: " + str(round(duration, 2)) + " sec" + "\n" +
             str(chr(0x1F6B4)) + "Your speed: " + str(round(60 * len(data['orig_text']) / duration, 2)) + " symbols/min" + "\n" +
-            str(chr(0x1F4D7)) + "This text was from: " + data['book'])
-    bot.delete_state(message.from_user.id)
-
+            str(chr(0x1F4D7)) + "This text was from: " + data['book'] + "\n")
+        
+    bot.send_message(message.from_user.id,"Typos you made:" + "\n\n" + final_typos)
+    bot.delete_state(message.from_user.id) 
 
 @bot.message_handler(content_types='text')
 def ReportUnknownMsg(message):
