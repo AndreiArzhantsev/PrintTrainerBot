@@ -16,7 +16,8 @@ class States:
     end_time = 0
 
 
-token = '5089220566:AAEEtsfkltvqACPruJxdCV_cbrCyxMLUamA'
+token = 12345 
+# write your token
 bot = telebot.TeleBot(token)
 
 
